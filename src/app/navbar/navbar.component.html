@@ -1,0 +1,21 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <a href="/" class="navbar-brand">
+        <img src="/assets/admin-avatar.jpg" width="30" height="30" class="d-inline-block align-top rounded-circle"
+            alt="" loading="lazy">
+        Customer Manager
+    </a>
+    <button class="navbar-toggler" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed"
+        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <a class="nav-item nav-link" routerLink='/' [routerLinkActive]="['active']"
+                [routerLinkActiveOptions]="{exact:true}">Customers</a>
+            <a class="nav-item nav-link" routerLink='/create' [routerLinkActive]="['active']"
+                [routerLinkActiveOptions]="{exact:true}">Create new</a>
+            <a class="nav-item nav-link disabled" href="#">Options</a>
+        </ul>
+    </div>
+</nav>

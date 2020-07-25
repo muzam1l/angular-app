@@ -1,0 +1,44 @@
+<div class="d-flex flex-column align-items-end">
+    <form>
+        <div class="form-group form-inline">
+            Filter: <input class="form-control ml-2" type="text" name="searchTerm" [(ngModel)]="service.searchTerm" />
+        </div>
+    </form>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Image</th>
+                <th scope="col" sortable="first_name" (sort)="onSort($event)">First Name</th>
+                <th scope="col" sortable="last_name" (sort)="onSort($event)">Last Name</th>
+                <th scope="col">Address</th>
+                <th scope="col">City</th>
+                <th scope="col">State</th>
+                <th scope="col" sortable="order_total" (sort)="onSort($event)">Order Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let customer of customers$ | async ; index as i">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>
+                    <img width="50" height="50" src="/assets/avatar.png" alt="avatar">
+                </td>
+                <td>
+                    <ngb-highlight [result]="customer.first_name" [term]="service.searchTerm"></ngb-highlight>
+                </td>
+                <td>
+                    <ngb-highlight [result]="customer.last_name" [term]="service.searchTerm"></ngb-highlight>
+                </td>
+                <td>{{ customer.address }}</td>
+                <td>{{ customer.city }}</td>
+                <td>{{ customer.state }}</td>
+                <td>
+                    $<ngb-highlight [result]="customer.order_total | number" [term]="service.searchTerm">
+                    </ngb-highlight>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <ngb-pagination [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize">
+    </ngb-pagination>
+</div>
